@@ -5,7 +5,9 @@ class DataView{
     #cimElem
     #cimkek
     #lista
-    constructor(lista, szuloElem, cimkek){
+    #urlapAdat
+    constructor(lista, szuloElem, cimkek, urlapAdat){
+        this.#urlapAdat = urlapAdat;
         this.#lista = lista
         this.#cimkek = cimkek;
         this.#cimkek.push("Modósítás", "Törlés");
@@ -23,7 +25,7 @@ class DataView{
     #init(){
         this.#tableElem.append("<tbody>");
         for (let index = 0; index < this.#lista.length; index++) {
-            new AdatTablaResz(index, this.#lista[index], this.#tableElem.children("tbody"));
+            new AdatTablaResz(index, this.#lista[index], this.#tableElem.children("tbody"), this.#urlapAdat);
         }
 
     }

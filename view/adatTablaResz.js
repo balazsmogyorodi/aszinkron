@@ -2,18 +2,43 @@ class AdatTablaResz{
     #adatok;
     #id;
     #trElem;
-    constructor(id, adatok, szuloElem){
+    #urlapAdat
+    constructor(id, adatok, szuloElem, urlapAdat){
+        this.#urlapAdat = urlapAdat;
         this.#id = id;
         this.#adatok = adatok
-        console.log(adatok);
         szuloElem.append("<tr>");
+        console.log(szuloElem);
         this.#trElem = szuloElem.children("tr:last-child");
-        this.#trElem.addClass(`#${this.#id}_sor`)
+        this.#trElem.attr('id', `${this.#id}`);
         this.#trElem.append(this.#kiiras())
-        $(`.torles${this.#id}`).on("click",()=>{
+        $(`.torles`).on("click",()=>{
             this.#torlestrigger();
         })
+        $(`.modosit${this.#id}`).on("click",()=>{
+            this.#modositTrigger();
+        })
+
+
     }
+
+    getTrElem(){
+        return this.#trElem;
+    }
+    getUrlapElem(){
+        return this.#urlapAdat;
+    }
+
+    getId(){
+        return this.#id
+    }
+
+    getAdatok(){
+        return this.#adatok
+    }
+
+
+
 
 
     #kiiras(){
@@ -21,11 +46,15 @@ class AdatTablaResz{
         for (const key in this.#adatok) {
             txt += `<td>${this.#adatok[key]}</td>`
         }
-        txt += `<td><button class="modósit${this.#id}">áttírás</button></td><td><button class="torles${this.#id}">törlés</button></td>`
+        txt += `<td><button class="modosit${this.#id}" ">áttírás</button></td><td><button class="torles">törlés</button></td>`
         return txt;
     }
     #torlestrigger(){
-        window.dispatchEvent(new CustomEvent("torles", {detail:this.#id}));
+        window.dispatchEvent(new CustomEvent("torles", {detail:this}));
+    }
+
+    #modositTrigger(){
+        window.dispatchEvent(new CustomEvent("modosit", {detail:this}));
     }
 
 }

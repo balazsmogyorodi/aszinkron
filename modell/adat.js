@@ -9,6 +9,7 @@ export const pattern = { nev: "[A-Za-z]{3}", szul: { min: 1000, max: 2023 } }; *
 export const adatLeiras = {
     vnev: {
         megjelenes: "Vezetéknév",
+        class: "vnev",
         tipus: "text",
         placeholder: "Valaki Vagyok",
         pattern: "[A-Z][a-z]{3}",
@@ -18,6 +19,7 @@ export const adatLeiras = {
     },
     knev: {
         megjelenes: "Keresztnév",
+        class: "knev",
         tipus: "text",
         placeholder: "Valaki Vagyok",
         pattern: "[A-Z][a-z]{3}",
@@ -27,9 +29,10 @@ export const adatLeiras = {
     },
     szul: {
         megjelenes: "Születési idő",
-        tipus: "date",
-        value:"2000-01-01",
-        pattern: { min: "1000-01-01", max: "2023-12-30" },
+        class: "datum",
+        tipus: "number",
+        value:"2000",
+        pattern: { min: "1000", max: "2023" },
         szoveg: "1000 és 2023 közötti számot adhat meg!",
        
     },
